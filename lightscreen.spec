@@ -32,15 +32,15 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	cp -r Lightscreen-%{lightscreenSHA} %{_builddir}
 	cp UGlobalHotkey-%{uglobSHA}/* "%{_builddir}"/"Lightscreen-%{lightscreenSHA}/tools/UGlobalHotkey"
 	cp SingleApplication-%{singleAppSHA}/* "%{_builddir}"/"Lightscreen-%{lightscreenSHA}/tools/SingleApplication"
-	cd "%{_builddir}"/"Lightscreen-%{lightscreenSHA}"
 
 %build
-	cd "%{_builddir}/Lightscreen-%{lightscreenSHA}"
 	cp "%{_sourcedir}/%{patch01LONG}/undef_success_x11.patch" "%{_builddir}/Lightscreen-%{lightscreenSHA}/tools/"
-	cd tools
+	#Patch....
+	cd "%{_builddir}/Lightscreen-%{lightscreenSHA}/tools"
 	unix2dos undef_success_x11.patch
 	patch --ignore-whitespace --binary screenshot.cpp < undef_success_x11.patch
 	cd "%{_builddir}/Lightscreen-%{lightscreenSHA}"
+	#build
 	qmake-qt5
 	make
 
@@ -55,6 +55,8 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	/usr/bin/lightscreen
 	/usr/share/pixmaps/lightscreen.ico
 %changelog
+* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git-1.5.1
+- remove redundant cd's
 * Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git-1.5
 - simplify trough variables!
 * Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git-1
