@@ -11,8 +11,8 @@ Source2: https://github.com/ckaiser/SingleApplication/archive/c6378eec45a5fdf699
 Source3: https://gist.github.com/Darksider3/6db935d8a54f67061f0841add8f392b9/archive/6feb4628124f90f197886623c56278a1ab11ab91.zip
 
 BuildRequires: qt5-qtbase-devel qt5-qtdeclarative-devel qt5-qtxmlpatterns-devel qt5-qtmultimedia-devel qt5-qtx11extras-devel
-BuildRequires: make cmake dos2unix
-Requires: qt5-qtbase qt5-qtdeclarative qt5-qtxmlpatterns qt5-qtmultimedia qt5-qtx11extras
+BuildRequires: make cmake dos2unix xcb-util-keysyms-devel
+Requires: qt5-qtbase qt5-qtdeclarative qt5-qtxmlpatterns qt5-qtmultimedia qt5-qtx11extras xcb-util-keysyms
 
 %description
 Lightscreen is a simple tool to automate the tedious process of saving and cataloging screenshots.
