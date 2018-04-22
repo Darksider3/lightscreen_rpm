@@ -30,9 +30,10 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 
 %build
 	cd "%{_builddir}/Lightscreen-7782bd5d68a0c14b06873d3a04929816e337c8a3"
-	cp "%{_sourcedir}/6db935d8a54f67061f0841add8f392b9-6feb4628124f90f197886623c56278a1ab11ab91/undef_success_x11.patch" ./tools/
+	cp "%{_sourcedir}/6db935d8a54f67061f0841add8f392b9-6feb4628124f90f197886623c56278a1ab11ab91/undef_success_x11.patch" "%{_builddir}/Lightscreen-7782bd5d68a0c14b06873d3a04929816e337c8a3/tools/"
 	cd tools
-	patch < undef_success_x11.patch
+	unix2dos undef_success_x11.patch
+	patch --ignore-whitespace --binary screenshot.cpp < undef_success_x11.patch
 	cd "%{_builddir}/Lightscreen-7782bd5d68a0c14b06873d3a04929816e337c8a3"
 	qmake-qt5
 	make
