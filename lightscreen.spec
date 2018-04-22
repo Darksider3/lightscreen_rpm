@@ -19,7 +19,7 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 
 %prep
 	cd %_sourcedir
-	unzip "6db935d8a54f67061f0841add8f392b9/archive/6feb4628124f90f197886623c56278a1ab11ab91.zip"
+	unzip "6feb4628124f90f197886623c56278a1ab11ab91.zip"
 	unzip "7782bd5d68a0c14b06873d3a04929816e337c8a3.zip"
 	unzip "231b10144741b29037f0128bb7a1cd7176529f74.zip"
 	unzip "c6378eec45a5fdf699b4d27fb4be22a190b2a184.zip"
