@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Lightscreen
+GenericName=Lightscreen
+GenericName[de]=Lightscreen Screenshot-Tool
+Comment=Screenshot-tool and uploader
+Exec=lightscreen
+Icon=/usr/share/pixmaps/lightscreen.ico
+Terminal=False
+StartupNotify=False
+Categories=Utility;Graphics;
