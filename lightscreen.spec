@@ -1,6 +1,6 @@
 Name: lightscreen
 Version: 2.4.git7782bd5
-Release: 1.6%{?dist}
+Release: 1.6.1%{?dist}
 Summary: Simple tool to automate the tedious process of saving and cataloging screenshots
 URL: https://lightscreen.com.ar/
 License: GPLv2
@@ -71,6 +71,14 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	/usr/share/applications/lightscreen.desktop
 
 %changelog
+* Mon Apr 23 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6.1
+- Added clean-target for makefile
+- Added cleanup-routines(sourcedir,builddir,buildroot)
+- Added makefile for building
+- Remove unneccessary(hopefully) desktop-file-install from 'required' 
+  for installation of the rpm file. And fix some intendantion aswell.
+
+
 * Mon Apr 23 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6
 - Added Desktop File
 - desktop-install-file routine
