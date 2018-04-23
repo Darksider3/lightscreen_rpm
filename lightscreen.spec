@@ -8,13 +8,21 @@ License: GPLv2
 %define lightscreenSHA 7782bd5d68a0c14b06873d3a04929816e337c8a3
 %define uglobSHA 231b10144741b29037f0128bb7a1cd7176529f74
 %define singleAppSHA c6378eec45a5fdf699b4d27fb4be22a190b2a184
+#patch
 %define patch01SHA 6feb4628124f90f197886623c56278a1ab11ab91
 %define patch01LONG 6db935d8a54f67061f0841add8f392b9-6feb4628124f90f197886623c56278a1ab11ab91
+#patchend
+#desktop-file
+%define desktopFileSHA 729d92439a1b4f5532829f64b0530e462a4c3299
+%define desktopFileLONG ed4e032a744566e57e2db3f10f0881cc-729d92439a1b4f5532829f64b0530e462a4c3299
+#end
 
 Source0: https://github.com/ckaiser/Lightscreen/archive/%{lightscreenSHA}.zip
 Source1: https://github.com/ckaiser/UGlobalHotkey/archive/%{uglobSHA}.zip
 Source2: https://github.com/ckaiser/SingleApplication/archive/%{singleAppSHA}.zip
 Source3: https://gist.github.com/Darksider3/6db935d8a54f67061f0841add8f392b9/archive/%{patch01SHA}.zip
+Source4: https://gist.github.com/Darksider3/ed4e032a744566e57e2db3f10f0881cc/archive/729d92439a1b4f5532829f64b0530e462a4c3299.zip
+
 
 BuildRequires: qt5-qtbase-devel qt5-qtdeclarative-devel qt5-qtxmlpatterns-devel qt5-qtmultimedia-devel qt5-qtx11extras-devel
 BuildRequires: make cmake dos2unix xcb-util-keysyms-devel
@@ -25,11 +33,13 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 
 %prep
 	cd %_sourcedir
+	unzip "%{desktopFileSHA}.zip"
 	unzip "%{patch01SHA}.zip"
 	unzip "%{lightscreenSHA}.zip"
 	unzip "%{uglobSHA}.zip"
 	unzip "%{singleAppSHA}.zip"
-	cp -r Lightscreen-%{lightscreenSHA} %{_builddir}
+	cp -r "Lightscreen-%{lightscreenSHA}" "%{_builddir}"
+	cp "%{desktopFileLONG}/lightscreen.desktop" "%{_builddir}/Lightscreen-%{lightscreenSHA}/"
 	cp UGlobalHotkey-%{uglobSHA}/* "%{_builddir}"/"Lightscreen-%{lightscreenSHA}/tools/UGlobalHotkey"
 	cp SingleApplication-%{singleAppSHA}/* "%{_builddir}"/"Lightscreen-%{lightscreenSHA}/tools/SingleApplication"
 
@@ -47,13 +57,15 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 %install
 	mkdir -p %{buildroot}/%{_bindir}
 	mkdir -p %{buildroot}/usr/share/pixmaps
+	mkdir -p %{buildroot}/usr/share/applications
 	install -p -m 0755 "%{_builddir}/Lightscreen-%{lightscreenSHA}/lightscreen" "%{buildroot}/%{_bindir}/lightscreen"
 	install -p -m 0775 "%{_builddir}/Lightscreen-%{lightscreenSHA}/images/LS.ico" "%{buildroot}/usr/share/pixmaps/lightscreen.ico"
-	#install -Dm775 "%{_builddir}/lightscreen.desktop" "%{buildroot}/usr/share/applications/lightscreen.desktop"
+	install -p -m 0775 "%{_builddir}/Lightscreen-%{lightscreenSHA}/lightscreen.desktop" "%{buildroot}/usr/share/applications/lightscreen.desktop"
 
 %files
 	/usr/bin/lightscreen
 	/usr/share/pixmaps/lightscreen.ico
+	/usr/share/applications/lightscreen.desktop
 %changelog
 * Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git-1.5.1
 - remove redundant cd's
