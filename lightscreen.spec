@@ -17,7 +17,7 @@ Source0: https://github.com/ckaiser/Lightscreen/archive/%{lightscreenSHA}.zip
 Source1: https://github.com/ckaiser/UGlobalHotkey/archive/%{uglobSHA}.zip
 Source2: https://github.com/ckaiser/SingleApplication/archive/%{singleAppSHA}.zip
 Source3: https://gist.github.com/Darksider3/6db935d8a54f67061f0841add8f392b9/archive/%{patch01SHA}.zip
-Source4: https://gist.githubusercontent.com/Darksider3/ed4e032a744566e57e2db3f10f0881cc/raw/729d92439a1b4f5532829f64b0530e462a4c3299/lightscreen.desktop
+Source4: https://gist.githubusercontent.com/Darksider3/ed4e032a744566e57e2db3f10f0881cc/raw/03caa2f30191f3435b94ce1f2703d90af3011e7a/lightscreen.desktop
 
 
 BuildRequires: qt5-qtbase-devel qt5-qtdeclarative-devel qt5-qtxmlpatterns-devel qt5-qtmultimedia-devel qt5-qtx11extras-devel
