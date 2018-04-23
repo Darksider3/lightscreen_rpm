@@ -21,8 +21,8 @@ Source4: https://gist.githubusercontent.com/Darksider3/ed4e032a744566e57e2db3f10
 
 
 BuildRequires: qt5-qtbase-devel qt5-qtdeclarative-devel qt5-qtxmlpatterns-devel qt5-qtmultimedia-devel qt5-qtx11extras-devel
-BuildRequires: make cmake dos2unix xcb-util-keysyms-devel
-Requires: qt5-qtbase qt5-qtdeclarative qt5-qtxmlpatterns qt5-qtmultimedia qt5-qtx11extras xcb-util-keysyms
+BuildRequires: make cmake dos2unix xcb-util-keysyms-devel desktop-file-utils
+Requires: qt5-qtbase qt5-qtdeclarative qt5-qtxmlpatterns qt5-qtmultimedia qt5-qtx11extras xcb-util-keysyms desktop-file-utils
 
 %description
 Lightscreen is a simple tool to automate the tedious process of saving and cataloging screenshots.
@@ -55,8 +55,10 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	mkdir -p %{buildroot}/usr/share/applications
 	install -p -m 0755 "%{_builddir}/Lightscreen-%{lightscreenSHA}/lightscreen" "%{buildroot}/%{_bindir}/lightscreen"
 	install -p -m 0775 "%{_builddir}/Lightscreen-%{lightscreenSHA}/images/LS.ico" "%{buildroot}/usr/share/pixmaps/lightscreen.ico"
-	install -p -m 0775 "%{_builddir}/Lightscreen-%{lightscreenSHA}/lightscreen.desktop" "%{buildroot}/usr/share/applications/lightscreen.desktop"
-
+	desktop-file-install "%{_builddir}/Lightscreen-%{lightscreenSHA}/lightscreen.desktop" "%{buildroot}/usr/share/applications/lightscreen.desktop"
+	
+%clean
+	
 %files
 	/usr/bin/lightscreen
 	/usr/share/pixmaps/lightscreen.ico
