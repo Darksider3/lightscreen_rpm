@@ -12,16 +12,12 @@ License: GPLv2
 %define patch01SHA 6feb4628124f90f197886623c56278a1ab11ab91
 %define patch01LONG 6db935d8a54f67061f0841add8f392b9-6feb4628124f90f197886623c56278a1ab11ab91
 #patchend
-#desktop-file
-%define desktopFileSHA 729d92439a1b4f5532829f64b0530e462a4c3299
-%define desktopFileLONG ed4e032a744566e57e2db3f10f0881cc-729d92439a1b4f5532829f64b0530e462a4c3299
-#end
 
 Source0: https://github.com/ckaiser/Lightscreen/archive/%{lightscreenSHA}.zip
 Source1: https://github.com/ckaiser/UGlobalHotkey/archive/%{uglobSHA}.zip
 Source2: https://github.com/ckaiser/SingleApplication/archive/%{singleAppSHA}.zip
 Source3: https://gist.github.com/Darksider3/6db935d8a54f67061f0841add8f392b9/archive/%{patch01SHA}.zip
-Source4: https://gist.github.com/Darksider3/ed4e032a744566e57e2db3f10f0881cc/archive/729d92439a1b4f5532829f64b0530e462a4c3299.zip
+Source4: https://gist.githubusercontent.com/Darksider3/ed4e032a744566e57e2db3f10f0881cc/raw/729d92439a1b4f5532829f64b0530e462a4c3299/lightscreen.desktop
 
 
 BuildRequires: qt5-qtbase-devel qt5-qtdeclarative-devel qt5-qtxmlpatterns-devel qt5-qtmultimedia-devel qt5-qtx11extras-devel
@@ -33,7 +29,6 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 
 %prep
 	cd %_sourcedir
-	unzip "%{desktopFileSHA}.zip"
 	unzip "%{patch01SHA}.zip"
 	unzip "%{lightscreenSHA}.zip"
 	unzip "%{uglobSHA}.zip"
@@ -44,7 +39,7 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 
 %build
 	cp "%{_sourcedir}/%{patch01LONG}/undef_success_x11.patch" "%{_builddir}/Lightscreen-%{lightscreenSHA}/tools/"
-	cp "%{_sourcedir}/%{desktopFileLONG}/lightscreen.desktop" "%{_builddir}/Lightscreen-%{lightscreenSHA}/lightscreen.desktop"
+	cp "%{_sourcedir}/lightscreen.desktop" "%{_builddir}/Lightscreen-%{lightscreenSHA}/lightscreen.desktop"
 	#Patch....
 	cd "%{_builddir}/Lightscreen-%{lightscreenSHA}/tools"
 	unix2dos undef_success_x11.patch
