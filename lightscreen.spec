@@ -58,7 +58,10 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	desktop-file-install "%{_builddir}/Lightscreen-%{lightscreenSHA}/lightscreen.desktop" "%{buildroot}/usr/share/applications/lightscreen.desktop"
 	
 %clean
-	
+	rm -rf %{buildroot}/*
+	rm -rf %{_builddir}/*
+	# clean up sourecdir afterwards(but only directories, save downloaded files)
+	find %{_sourcedir} -maxdepth 1 -mindepth 1 -type d -exec rm -rf '{}' \;
 %files
 	/usr/bin/lightscreen
 	/usr/share/pixmaps/lightscreen.ico
