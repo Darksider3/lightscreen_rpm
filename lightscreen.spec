@@ -39,12 +39,12 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	unzip "%{uglobSHA}.zip"
 	unzip "%{singleAppSHA}.zip"
 	cp -r "Lightscreen-%{lightscreenSHA}" "%{_builddir}"
-	cp "%{desktopFileLONG}/lightscreen.desktop" "%{_builddir}/Lightscreen-%{lightscreenSHA}/"
 	cp UGlobalHotkey-%{uglobSHA}/* "%{_builddir}"/"Lightscreen-%{lightscreenSHA}/tools/UGlobalHotkey"
 	cp SingleApplication-%{singleAppSHA}/* "%{_builddir}"/"Lightscreen-%{lightscreenSHA}/tools/SingleApplication"
 
 %build
 	cp "%{_sourcedir}/%{patch01LONG}/undef_success_x11.patch" "%{_builddir}/Lightscreen-%{lightscreenSHA}/tools/"
+	cp "%{_sourcedir}/%{desktopFileLONG}/lightscreen.desktop" "%{_builddir}/Lightscreen-%{lightscreenSHA}/lightscreen.desktop"
 	#Patch....
 	cd "%{_builddir}/Lightscreen-%{lightscreenSHA}/tools"
 	unix2dos undef_success_x11.patch
