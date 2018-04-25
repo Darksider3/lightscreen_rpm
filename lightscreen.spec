@@ -1,7 +1,7 @@
 Name: Lightscreen
 Version: 2.4.git7782bd5
 Release: 1.6.2%{?dist}
-Summary: Simple tool to automate the tedious process of saving and cataloging screenshots
+Summary: Simple tool to automate the tedious process of saving and cataloging screenshots.
 URL: https://lightscreen.com.ar/
 VCS: https://github.com/ckaiser/Lightscreen.git
 License: GPLv2
