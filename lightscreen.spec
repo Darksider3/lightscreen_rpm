@@ -33,8 +33,8 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 
 %prep
 	cd %_sourcedir
-	%{uncompress: %{P:0}} #%{PATCH0}
-	%{uncompress: %{S:0}} #%{SOURCE0}
+	%{uncompress: %{P:0}} #PATCH0
+	%{uncompress: %{S:0}} #SOURCE0
 	%{uncompress: %{S:1}}
 	%{uncompress: %{S:2}}
 	%{uncompress: %{S:3}}
@@ -49,7 +49,7 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	#Patch....
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}/tools"
 	unix2dos undef_success_x11.patch
-	patch --ignore-whitespace --binary screenshot.cpp < undef_success_x11.patch
+	%{__patch} --ignore-whitespace --binary screenshot.cpp < undef_success_x11.patch
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}"
 	#build
 	qmake-qt5
@@ -89,7 +89,7 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 
 %changelog
 * Wed Apr 25 2018 darksider3 <github@darksider3.de> - 1.6.2
-- Change all Uppercase Lightscreen to %name-variable
+- Change all Uppercase Lightscreen to name-variable
 - use uncompress-macro, not unzip
 - use S/P-macro instead of SHAs
 - use global instead of define
@@ -97,6 +97,8 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 - use __install-macro instead of install
 - __make-macro instead of make
 - __mkdir_p-macro instead of mkdir-p
+- __patch-macro instead of patch
+- delete macro in comments
 - include README.md and LICENSE!
 - remove executable flag from doc-files.
 - reindent changelog
