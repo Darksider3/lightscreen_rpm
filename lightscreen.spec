@@ -1,6 +1,6 @@
 Name: Lightscreen
 Version: 2.4.git7782bd5
-Release: 1.6.1%{?dist}
+Release: 1.6.2%{?dist}
 Summary: Simple tool to automate the tedious process of saving and cataloging screenshots
 URL: https://lightscreen.com.ar/
 License: GPLv2
@@ -64,9 +64,10 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/README.md" "%{buildroot}/%{_docdir}/%{name}/README.md"
 	install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/README.md" "%{buildroot}/%{_docdir}/%{name}/README.md"
 	install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/LICENSE" "%{buildroot}/%{_docdir}/%{name}/LICENSE"
+	chmod -x+X -R %{buildroot}/%{_docdir}/%{name}
 	#/docs
 	install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/lightscreen" "%{buildroot}/%{_bindir}/lightscreen"
-	install -p -m 0775 "%{_builddir}/%{name}-%{lightscreenSHA}/images/LS.ico" "%{buildroot}/usr/share/pixmaps/lightscreen.ico"
+	install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/images/LS.ico" "%{buildroot}/usr/share/pixmaps/lightscreen.ico"
 	desktop-file-install "%{_builddir}/%{name}-%{lightscreenSHA}/lightscreen.desktop" "%{buildroot}/usr/share/applications/lightscreen.desktop"
 	
 
@@ -92,19 +93,26 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 - use %{S|P} instead of SHAs
 - use global instead of define
 - include README.md and LICENSE!
+- remove executable flag from doc-files.
+- reindent changelog
+
 * Mon Apr 23 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6.1
 - Added clean-target for makefile
 - Added cleanup-routines(sourcedir,builddir,buildroot)
 - Added makefile for building
 - Remove unneccessary(hopefully) desktop-file-install from 'required' 
   for installation of the rpm file. And fix some intendantion aswell.
+
 * Mon Apr 23 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6
 - Added Desktop File
 - desktop-install-file routine
 - added desktop file to files-section
+
 * Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git-1.5.1
 - remove redundant cd's
+
 * Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git-1.5
 - simplify trough variables!
+
 * Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git-1
 - initial package release
