@@ -3,6 +3,7 @@ Version: 2.4.git7782bd5
 Release: 1.6.2%{?dist}
 Summary: Simple tool to automate the tedious process of saving and cataloging screenshots
 URL: https://lightscreen.com.ar/
+VCS: https://github.com/ckaiser/Lightscreen.git
 License: GPLv2
 
 BuildRequires: qt5-qtbase-devel qt5-qtdeclarative-devel qt5-qtxmlpatterns-devel qt5-qtmultimedia-devel qt5-qtx11extras-devel
@@ -37,14 +38,14 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	%{uncompress: %{S:1}}
 	%{uncompress: %{S:2}}
 	%{uncompress: %{S:3}}
-	cp -r "%{name}-%{lightscreenSHA}" "%{_builddir}"
-	cp UGlobalHotkey-%{uglobSHA}/* "%{_builddir}"/"%{name}-%{lightscreenSHA}/tools/UGlobalHotkey"
-	cp SingleApplication-%{singleAppSHA}/* "%{_builddir}"/"%{name}-%{lightscreenSHA}/tools/SingleApplication"
+	%{__cp} -r "%{name}-%{lightscreenSHA}" "%{_builddir}"
+	%{__cp} UGlobalHotkey-%{uglobSHA}/* "%{_builddir}"/"%{name}-%{lightscreenSHA}/tools/UGlobalHotkey"
+	%{__cp} SingleApplication-%{singleAppSHA}/* "%{_builddir}"/"%{name}-%{lightscreenSHA}/tools/SingleApplication"
 
 
 %build
-	cp "%{_sourcedir}/%{patch01LONG}/undef_success_x11.patch" "%{_builddir}/%{name}-%{lightscreenSHA}/tools/"
-	cp "%{_sourcedir}/lightscreen.desktop" "%{_builddir}/%{name}-%{lightscreenSHA}/lightscreen.desktop"
+	%{__cp} "%{_sourcedir}/%{patch01LONG}/undef_success_x11.patch" "%{_builddir}/%{name}-%{lightscreenSHA}/tools/"
+	%{__cp} "%{_sourcedir}/lightscreen.desktop" "%{_builddir}/%{name}-%{lightscreenSHA}/lightscreen.desktop"
 	#Patch....
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}/tools"
 	unix2dos undef_success_x11.patch
@@ -52,22 +53,22 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}"
 	#build
 	qmake-qt5
-	make
+	%{__make}
 
 
 %install
-	mkdir -p %{buildroot}/%{_bindir}
-	mkdir -p %{buildroot}/usr/share/pixmaps
-	mkdir -p %{buildroot}/usr/share/applications
+	%{__mkdir_p} %{buildroot}/%{_bindir}
+	%{__mkdir_p} %{buildroot}/usr/share/pixmaps
+	%{__mkdir_p} %{buildroot}/usr/share/applications
 	#docs
 	mkdir -p %{buildroot}/%{_docdir}/%{name}
-	install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/README.md" "%{buildroot}/%{_docdir}/%{name}/README.md"
-	install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/README.md" "%{buildroot}/%{_docdir}/%{name}/README.md"
-	install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/LICENSE" "%{buildroot}/%{_docdir}/%{name}/LICENSE"
+	%__install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/README.md" "%{buildroot}/%{_docdir}/%{name}/README.md"
+	%__install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/README.md" "%{buildroot}/%{_docdir}/%{name}/README.md"
+	%__install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/LICENSE" "%{buildroot}/%{_docdir}/%{name}/LICENSE"
 	chmod -x+X -R %{buildroot}/%{_docdir}/%{name}
 	#/docs
-	install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/lightscreen" "%{buildroot}/%{_bindir}/lightscreen"
-	install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/images/LS.ico" "%{buildroot}/usr/share/pixmaps/lightscreen.ico"
+	%__install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/lightscreen" "%{buildroot}/%{_bindir}/lightscreen"
+	%__install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/images/LS.ico" "%{buildroot}/usr/share/pixmaps/lightscreen.ico"
 	desktop-file-install "%{_builddir}/%{name}-%{lightscreenSHA}/lightscreen.desktop" "%{buildroot}/usr/share/applications/lightscreen.desktop"
 	
 
@@ -87,32 +88,37 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 
 
 %changelog
-* Wed Apr 25 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6.2
+* Wed Apr 25 2018 darksider3 <github@darksider3.de> - 1.6.2
 - Change all Uppercase Lightscreen to %name-variable
-- use %{uncompress}, not unzip
-- use %{S|P} instead of SHAs
+- use uncompress-macro, not unzip
+- use S/P-macro instead of SHAs
 - use global instead of define
+- use __cp-macro instead of cp
+- use __install-macro instead of install
+- __make-macro instead of make
+- __mkdir_p-macro instead of mkdir-p
 - include README.md and LICENSE!
 - remove executable flag from doc-files.
 - reindent changelog
 
-* Mon Apr 23 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6.1
+
+* Mon Apr 23 2018 darksider3 <github@darksider3.de> - 1.6.1
 - Added clean-target for makefile
 - Added cleanup-routines(sourcedir,builddir,buildroot)
 - Added makefile for building
 - Remove unneccessary(hopefully) desktop-file-install from 'required' 
   for installation of the rpm file. And fix some intendantion aswell.
 
-* Mon Apr 23 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6
+* Mon Apr 23 2018 darksider3 <github@darksider3.de> - 1.6
 - Added Desktop File
 - desktop-install-file routine
 - added desktop file to files-section
 
-* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git-1.5.1
+* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 1.5.1
 - remove redundant cd's
 
-* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git-1.5
+* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 1.5
 - simplify trough variables!
 
-* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git-1
+* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 1
 - initial package release
