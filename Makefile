@@ -1,5 +1,5 @@
 specfile=lightscreen.spec
-cleanfolders=SRPMS/* SOURCES/* RPMS/*
+cleanfolders=SRPMS/* SOURCES/* RPMS/* BUILD/*
 
 all: build
 

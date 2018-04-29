@@ -32,19 +32,17 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 
 
 %prep
-	cd %_sourcedir
-	%{uncompress: %{P:0}} #PATCH0
-	%{uncompress: %{S:0}} #SOURCE0
-	%{uncompress: %{S:1}}
-	%{uncompress: %{S:2}}
-	%{uncompress: %{S:3}}
-	%{__cp} -r "%{name}-%{lightscreenSHA}" "%{_builddir}"
+	%{uncompress: %{P:0}} #PATCH0 - lightscreen-patch
+	%{uncompress: %{S:0}} #SOURCE0  lightscreen
+	%{uncompress: %{S:1}} # uglob
+	%{uncompress: %{S:2}} #singleapp
+	%{uncompress: %{S:3}} #lightscreen.desktop
 	%{__cp} UGlobalHotkey-%{uglobSHA}/* "%{_builddir}"/"%{name}-%{lightscreenSHA}/tools/UGlobalHotkey"
 	%{__cp} SingleApplication-%{singleAppSHA}/* "%{_builddir}"/"%{name}-%{lightscreenSHA}/tools/SingleApplication"
 
 
 %build
-	%{__cp} "%{_sourcedir}/%{patch01LONG}/undef_success_x11.patch" "%{_builddir}/%{name}-%{lightscreenSHA}/tools/"
+	%{__cp} "%{_builddir}/%{patch01LONG}/undef_success_x11.patch" "%{_builddir}/%{name}-%{lightscreenSHA}/tools/"
 	%{__cp} "%{_sourcedir}/lightscreen.desktop" "%{_builddir}/%{name}-%{lightscreenSHA}/lightscreen.desktop"
 	#Patch....
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}/tools"
@@ -62,7 +60,6 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	%{__mkdir_p} %{buildroot}/usr/share/applications
 	#docs
 	mkdir -p %{buildroot}/%{_docdir}/%{name}
-	%__install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/README.md" "%{buildroot}/%{_docdir}/%{name}/README.md"
 	%__install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/README.md" "%{buildroot}/%{_docdir}/%{name}/README.md"
 	%__install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/LICENSE" "%{buildroot}/%{_docdir}/%{name}/LICENSE"
 	chmod -x+X -R %{buildroot}/%{_docdir}/%{name}
