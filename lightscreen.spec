@@ -31,7 +31,7 @@ Requires: qt5-qtbase qt5-qtdeclarative qt5-qtxmlpatterns qt5-qtmultimedia qt5-qt
 # SUSE Requires
 %if 0%{?suse_version}
 BuildRequires: libqt5-qtbase-devel libqt5-qtdeclarative-devel libqt5-qtxmlpatterns-devel libqt5-qtmultimedia-devel libqt5-qtx11extras-devel
-BuildRequires: make cmake dos2unix xcb-util-keysyms-devel desktop-file-utils
+BuildRequires: make cmake dos2unix xcb-util-keysyms-devel desktop-file-utils unzip
 Requires: libqt5-qtbase libqt5-qtdeclarative libqt5-qtxmlpatterns libqt5-qtmultimedia libqt5-qtx11extras xcb-util-keysyms
 %endif
 
