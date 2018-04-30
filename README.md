@@ -1,5 +1,5 @@
 # lightscreen_rpm
-![build](https://copr.fedorainfracloud.org/coprs/darksider3/lightscreen/package/lightscreen/status_image/last_build.png)
+![build](https://copr.fedorainfracloud.org/coprs/darksider3/lightscreen/package/Lightscreen/status_image/last_build.png)
 
 (S)RPM Package for [Lightscreen](https://github.com/ckaiser/Lightscreen)
 
