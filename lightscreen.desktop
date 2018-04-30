@@ -9,4 +9,4 @@ Exec=lightscreen
 Icon=/usr/share/pixmaps/lightscreen.ico
 Terminal=false
 StartupNotify=false
-Categories=Utility;Graphics;
+Categories=Utility;Archiving;Graphics;2DGraphics;
