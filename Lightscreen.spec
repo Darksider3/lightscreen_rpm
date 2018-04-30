@@ -70,6 +70,7 @@ and cataloging screenshots.
 
 
 %build
+
 	%{__cp} "%{_builddir}/%{patch00LONG}/undef_success_x11.patch" "%{_builddir}/%{name}-%{lightscreenSHA}/tools/"
 	%{__cp} "%{_sourcedir}/%{patch01Name}" "%{_builddir}/%{name}-%{lightscreenSHA}/tools/"
 	%{__cp} "%{_sourcedir}/lightscreen.desktop" "%{_builddir}/%{name}-%{lightscreenSHA}/lightscreen.desktop"
@@ -77,8 +78,8 @@ and cataloging screenshots.
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}/tools"
 	unix2dos undef_success_x11.patch
 	unix2dos %{patch01Name}
-	%{__patch} --ignore-whitespace --binary screenshot.cpp < undef_success_x11.patch
-	%{__patch} --ignore-whitespace --binary screenshot.cpp < %{patch01Name}
+	%{__patch} -s --ignore-whitespace --binary screenshot.cpp < undef_success_x11.patch
+	%{__patch} -s --ignore-whitespace --binary screenshot.cpp < %{patch01Name}
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}"
 	#build
 	qmake-qt5 QMAKE_CXXFLAGS+="%{optflags}"
@@ -123,6 +124,9 @@ and cataloging screenshots.
 * Mon Apr 30 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6.3%{?dist}
 - add smp_flags to make
 - added copyright/licensing for the spec file
+- qmake flags added
+- added docs for suse only(required for build)
+- Patch out random data generation in screenshot.cpp(caused by no return after switch)
 
 * Wed Apr 25 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6.2%{?dist}
 - Change all Uppercase Lightscreen to name-variable
