@@ -107,6 +107,9 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	%{_bindir}/lightscreen
 	%{_datadir}/pixmaps/lightscreen.ico
 	%{_datadir}/applications/lightscreen.desktop
+	%if 0%{?suse_version}
+	%doc /usr/share/doc/packages/Lightscreen
+	%endif
 
 
 %changelog
