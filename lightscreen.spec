@@ -76,7 +76,7 @@ and cataloging screenshots.
 	%{__patch} --ignore-whitespace --binary screenshot.cpp < undef_success_x11.patch
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}"
 	#build
-	qmake-qt5 QMAKE_CXXFLAGS="%{optflags}"
+	qmake-qt5 QMAKE_CXXFLAGS="%{optflags}" %{?_smp_mflags}
 	%{__make} %{?_smp_mflags} 
 
 
