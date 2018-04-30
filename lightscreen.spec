@@ -49,7 +49,7 @@ Source3: https://raw.githubusercontent.com/Darksider3/lightscreen_rpm/master/lig
 %global patch01LONG 6db935d8a54f67061f0841add8f392b9-6feb4628124f90f197886623c56278a1ab11ab91
 #patchend
 Patch0: https://gist.github.com/Darksider3/6db935d8a54f67061f0841add8f392b9/archive/%{patch01SHA}.zip
-
+Patch1: https://raw.githubusercontent.com/Darksider3/lightscreen_rpm/master/randomdata_suse.patch
 
 
 %description
@@ -59,6 +59,7 @@ and cataloging screenshots.
 
 %prep
 	%{uncompress: %{P:0}} #PATCH0 - lightscreen-patch
+	%{uncompress: %{P:1}}
 	%{uncompress: %{S:0}} #SOURCE0  lightscreen
 	%{uncompress: %{S:1}} # uglob
 	%{uncompress: %{S:2}} #singleapp
@@ -69,6 +70,7 @@ and cataloging screenshots.
 
 %build
 	%{__cp} "%{_builddir}/%{patch01LONG}/undef_success_x11.patch" "%{_builddir}/%{name}-%{lightscreenSHA}/tools/"
+	%{__cp} "%{_builddir}/randomdata_suse.patch" "%{_builddir}/%{name}-%{lightscreenSHA}/tools/"
 	%{__cp} "%{_sourcedir}/lightscreen.desktop" "%{_builddir}/%{name}-%{lightscreenSHA}/lightscreen.desktop"
 	#Patch....
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}/tools"
