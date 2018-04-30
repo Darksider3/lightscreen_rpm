@@ -15,7 +15,7 @@
 Name: Lightscreen
 Version: 2.4.git7782bd5
 Release: 1.6.3%{?dist}
-Summary: Simple tool to automate the tedious process of saving and cataloging screenshots.
+Summary: Simple tool to automate the tedious process of saving screenshots
 URL: https://lightscreen.com.ar/
 VCS: https://github.com/ckaiser/Lightscreen.git
 License: GPLv2
@@ -53,7 +53,8 @@ Patch0: https://gist.github.com/Darksider3/6db935d8a54f67061f0841add8f392b9/arch
 
 
 %description
-Lightscreen is a simple tool to automate the tedious process of saving and cataloging screenshots.
+Lightscreen is a simple tool to automate the tedious process of saving 
+and cataloging screenshots.
 
 
 %prep
@@ -75,8 +76,7 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	%{__patch} --ignore-whitespace --binary screenshot.cpp < undef_success_x11.patch
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}"
 	#build
-	QMAKE_CXXFLAGS="%{optflags}"
-	qmake-qt5
+	qmake-qt5 QMAKE_CXXFLAGS="%{optflags}"
 	%{__make} %{?_smp_mflags} 
 
 
@@ -91,6 +91,7 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	chmod -x+X -R %{buildroot}/%{_docdir}/%{name}
 	#/docs
 	%__install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/lightscreen" "%{buildroot}/%{_bindir}/lightscreen"
+	chmod a+x "%{buildroot}/%{_bindir}/lightscreen"
 	%__install -p -m 0755 "%{_builddir}/%{name}-%{lightscreenSHA}/images/LS.ico" "%{buildroot}/usr/share/pixmaps/lightscreen.ico"
 	desktop-file-install "%{_builddir}/%{name}-%{lightscreenSHA}/lightscreen.desktop" "%{buildroot}/usr/share/applications/lightscreen.desktop"
 	
@@ -114,11 +115,11 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 
 
 %changelog
-* Mon Apr 30 2018 darksider3 <github@darksider3.de> - 1.6.3
+* Mon Apr 30 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6.3%{?dist}
 - add smp_flags to make
 - added copyright/licensing for the spec file
 
-* Wed Apr 25 2018 darksider3 <github@darksider3.de> - 1.6.2
+* Wed Apr 25 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6.2%{?dist}
 - Change all Uppercase Lightscreen to name-variable
 - use uncompress-macro, not unzip
 - use S/P-macro instead of SHAs
@@ -133,23 +134,23 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 - remove executable flag from doc-files.
 - reindent changelog
 
-* Mon Apr 23 2018 darksider3 <github@darksider3.de> - 1.6.1
+* Mon Apr 23 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6.1%{?dist}
 - Added clean-target for makefile
 - Added cleanup-routines(sourcedir,builddir,buildroot)
 - Added makefile for building
 - Remove unneccessary(hopefully) desktop-file-install from 'required' 
   for installation of the rpm file. And fix some intendantion aswell.
 
-* Mon Apr 23 2018 darksider3 <github@darksider3.de> - 1.6
+* Mon Apr 23 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.6%{?dist}
 - Added Desktop File
 - desktop-install-file routine
 - added desktop file to files-section
 
-* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 1.5.1
+* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.5.1%{?dist}
 - remove redundant cd's
 
-* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 1.5
+* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1.5%{?dist}
 - simplify trough variables!
 
-* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 1
+* Sun Apr 22 2018 darksider3 <github@darksider3.de> - 2.4.git7782bd5-1%{?dist}
 - initial package release
