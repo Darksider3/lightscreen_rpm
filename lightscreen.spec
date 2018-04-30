@@ -1,6 +1,20 @@
+#
+# spec file for package Lightscreen
+#
+# Copyright (c) 2018 Leon Giesenkämper <github@darksider3.de>
+#
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
+
 Name: Lightscreen
 Version: 2.4.git7782bd5
-Release: 1.6.2%{?dist}
+Release: 1.6.3%{?dist}
 Summary: Simple tool to automate the tedious process of saving and cataloging screenshots.
 URL: https://lightscreen.com.ar/
 VCS: https://github.com/ckaiser/Lightscreen.git
@@ -51,7 +65,7 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}"
 	#build
 	qmake-qt5
-	%{__make}
+	%{__make} %{?_smp_mflags} 
 
 
 %install
@@ -85,6 +99,10 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 
 
 %changelog
+* Mon Apr 30 2018 darksider3 <github@darksider3.de> - 1.6.3
+- add smp_flags to make
+- added copyright/licensing for the spec file
+
 * Wed Apr 25 2018 darksider3 <github@darksider3.de> - 1.6.2
 - Change all Uppercase Lightscreen to name-variable
 - use uncompress-macro, not unzip
@@ -99,7 +117,6 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 - include README.md and LICENSE!
 - remove executable flag from doc-files.
 - reindent changelog
-
 
 * Mon Apr 23 2018 darksider3 <github@darksider3.de> - 1.6.1
 - Added clean-target for makefile
