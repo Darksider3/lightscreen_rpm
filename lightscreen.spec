@@ -20,10 +20,20 @@ URL: https://lightscreen.com.ar/
 VCS: https://github.com/ckaiser/Lightscreen.git
 License: GPLv2
 
+
+# Fedora Requires
+%if 0%{?fedora}
 BuildRequires: qt5-qtbase-devel qt5-qtdeclarative-devel qt5-qtxmlpatterns-devel qt5-qtmultimedia-devel qt5-qtx11extras-devel
 BuildRequires: make cmake dos2unix xcb-util-keysyms-devel desktop-file-utils
 Requires: qt5-qtbase qt5-qtdeclarative qt5-qtxmlpatterns qt5-qtmultimedia qt5-qtx11extras xcb-util-keysyms
+%endif
 
+# SUSE Requires
+%if 0%{?suse_version}
+BuildRequires: libqt5-qtbase-devel libqt5-qtdeclarative-devel libqt5-qtxmlpatterns-devel libqt5-qtmultimedia-devel libqt5-qtx11extras-devel
+BuildRequires: make cmake dos2unix xcb-util-keysyms-devel desktop-file-utils
+Requires: libqt5-qtbase libqt5-qtdeclarative libqt5-qtxmlpatterns libqt5-qtmultimedia libqt5-qtx11extras xcb-util-keysyms
+%endif
 
 %global lightscreenSHA 7782bd5d68a0c14b06873d3a04929816e337c8a3
 %global uglobSHA 231b10144741b29037f0128bb7a1cd7176529f74
