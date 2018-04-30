@@ -24,7 +24,7 @@ License: GPLv2
 # Fedora Requires
 %if 0%{?fedora}
 BuildRequires: qt5-qtbase-devel qt5-qtdeclarative-devel qt5-qtxmlpatterns-devel qt5-qtmultimedia-devel qt5-qtx11extras-devel
-BuildRequires: make cmake dos2unix xcb-util-keysyms-devel desktop-file-utils
+BuildRequires: make cmake dos2unix xcb-util-keysyms-devel desktop-file-utils 
 Requires: qt5-qtbase qt5-qtdeclarative qt5-qtxmlpatterns qt5-qtmultimedia qt5-qtx11extras xcb-util-keysyms
 %endif
 
@@ -32,6 +32,7 @@ Requires: qt5-qtbase qt5-qtdeclarative qt5-qtxmlpatterns qt5-qtmultimedia qt5-qt
 %if 0%{?suse_version}
 BuildRequires: libqt5-qtbase-devel libqt5-qtdeclarative-devel libqt5-qtxmlpatterns-devel libqt5-qtmultimedia-devel libqt5-qtx11extras-devel
 BuildRequires: make cmake dos2unix xcb-util-keysyms-devel desktop-file-utils unzip
+BuildRequires: libqt5gui-private-headers-devel
 Requires: libqt5-qtbase libqt5-qtdeclarative libqt5-qtxmlpatterns libqt5-qtmultimedia libqt5-qtx11extras xcb-util-keysyms
 %endif
 
