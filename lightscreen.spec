@@ -75,6 +75,7 @@ Lightscreen is a simple tool to automate the tedious process of saving and catal
 	%{__patch} --ignore-whitespace --binary screenshot.cpp < undef_success_x11.patch
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}"
 	#build
+	QMAKE_CXXFLAGS="%{optflags}"
 	qmake-qt5
 	%{__make} %{?_smp_mflags} 
 
