@@ -81,7 +81,7 @@ and cataloging screenshots.
 	%{__patch} --ignore-whitespace --binary screenshot.cpp < %{patch01}
 	cd "%{_builddir}/%{name}-%{lightscreenSHA}"
 	#build
-	qmake QMAKE_CXXFLAGS+="%{optflags}" %{?_smp_mflags}
+	qmake QMAKE_CXXFLAGS+="%{optflags}"
 	%{__make} %{?_smp_mflags}
 
 
